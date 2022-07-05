@@ -1,0 +1,21 @@
+/* font sizes: 
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+spacing sizes:
+2 / 4 / 6 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 120 */
+
+.number-box {
+  width: 150px;
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 4px;
+  background-color: hsl(0, 0%, 100%);
+  border-color: hsl(0, 0%, 80%);
+  border-width: 1px;
+  color: #4e555f;
+}
+
+.number-box:hover {
+  border-color: #362333;
+}

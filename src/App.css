@@ -1,19 +1,61 @@
+/* font sizes: 
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+spacing sizes:
+2 / 4 / 6 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 120 */
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.main-container {
+  width: 50vw;
+  background-color: #e9eaeb;
+  text-align: center;
+  border: 6px solid #e9eaeb;
+  border-radius: 6px;
+  margin: 0 auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.top-text {
+  margin-bottom: 16px;
+  color: #372234;
+}
+
+.title {
+  font-size: 52px;
+  letter-spacing: 0.8px;
+  font-weight: 700;
+}
+
+.indiv-row-container {
+  border: 1px solid black;
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 20px;
+}
+
+.span {
+  display: block;
+  text-align: center;
+  font-size: 44px;
+  font-weight: 700;
+  padding: 8px;
+  color: #372234;
+}
+
+.bottom-text {
+  padding: 6px;
+  color: #372234;
+}
+
+.sentence {
+  font-size: 24px;
+  padding: 4px;
+}
+
+.credits {
+  font-size: 10px;
+  color: #91959b;
 }
