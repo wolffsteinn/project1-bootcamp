@@ -30,6 +30,9 @@ function App() {
   //deciding which row is being changed by user
   const [amtIsFromTopRow, setAmtIsFromTopRow] = useState(true);
 
+  //setting error message
+  const [errMsg, setErrMsg] = useState("");
+
   // allowing for currency conversion both ways
   let topAmt, bottomAmt, roundedExchangeRate;
   if (amtIsFromTopRow) {
@@ -75,7 +78,7 @@ function App() {
           setBottomFullName(Object.values(upperCaseFullName)[90]);
         })
       )
-      .catch((err) => console.log(err));
+      .catch((err) => setErrMsg(err));
   }, []);
 
   useEffect(() => {
@@ -102,41 +105,50 @@ function App() {
         )[0].toLowerCase()}.json`,
       ];
       if (typeof topCurrSym === "object" && typeof bottomCurrSym === "string") {
-        axios.all(scenario1.map((end) => axios.get(end))).then(
-          axios.spread((fullname, conversion) => {
-            setExchangeRate(Object.values(conversion.data)[1]);
-            setTopFullName(
-              fullname.data[Object.values(topCurrSym)[0].toLowerCase()]
-            );
-          })
-        );
+        axios
+          .all(scenario1.map((end) => axios.get(end)))
+          .then(
+            axios.spread((fullname, conversion) => {
+              setExchangeRate(Object.values(conversion.data)[1]);
+              setTopFullName(
+                fullname.data[Object.values(topCurrSym)[0].toLowerCase()]
+              );
+            })
+          )
+          .catch((err) => setErrMsg(err));
       } else if (
         typeof topCurrSym === "string" &&
         typeof bottomCurrSym === "object"
       ) {
-        axios.all(scenario2.map((end) => axios.get(end))).then(
-          axios.spread((fullname, conversion) => {
-            setExchangeRate(Object.values(conversion.data)[1]);
-            setBottomFullName(
-              fullname.data[Object.values(bottomCurrSym)[0].toLowerCase()]
-            );
-          })
-        );
+        axios
+          .all(scenario2.map((end) => axios.get(end)))
+          .then(
+            axios.spread((fullname, conversion) => {
+              setExchangeRate(Object.values(conversion.data)[1]);
+              setBottomFullName(
+                fullname.data[Object.values(bottomCurrSym)[0].toLowerCase()]
+              );
+            })
+          )
+          .catch((err) => setErrMsg(err));
       } else if (
         typeof topCurrSym === "object" &&
         typeof bottomCurrSym === "object"
       ) {
-        axios.all(scenario3.map((end) => axios.get(end))).then(
-          axios.spread((fullname, conversion) => {
-            setExchangeRate(Object.values(conversion.data)[1]);
-            setTopFullName(
-              fullname.data[Object.values(topCurrSym)[0].toLowerCase()]
-            );
-            setBottomFullName(
-              fullname.data[Object.values(bottomCurrSym)[0].toLowerCase()]
-            );
-          })
-        );
+        axios
+          .all(scenario3.map((end) => axios.get(end)))
+          .then(
+            axios.spread((fullname, conversion) => {
+              setExchangeRate(Object.values(conversion.data)[1]);
+              setTopFullName(
+                fullname.data[Object.values(topCurrSym)[0].toLowerCase()]
+              );
+              setBottomFullName(
+                fullname.data[Object.values(bottomCurrSym)[0].toLowerCase()]
+              );
+            })
+          )
+          .catch((err) => setErrMsg(err));
       }
     }
   }, [topCurrSym, bottomCurrSym]);
@@ -235,6 +247,7 @@ function App() {
       <p className="credits">
         <em>Data Source: https://github.com/fawazahmed0/currency-api</em>
       </p>
+      {errMsg && <div className="error"> {errMsg} </div>}
     </div>
   );
 }
