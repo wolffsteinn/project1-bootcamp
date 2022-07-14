@@ -30,9 +30,6 @@ function App() {
   //deciding which row is being changed by user
   const [amtIsFromTopRow, setAmtIsFromTopRow] = useState(true);
 
-  //setting error message
-  const [errMsg, setErrMsg] = useState("");
-
   // allowing for currency conversion both ways
   let topAmt, bottomAmt, roundedExchangeRate;
   if (amtIsFromTopRow) {
@@ -63,10 +60,10 @@ function App() {
           for (const [key, value] of Object.entries(currencies.data.eur)) {
             upperCaseKeys[key.toUpperCase()] = value;
           }
-          const firstCurrency = Object.keys(upperCaseKeys)[90];
+          const firstCurrency = Object.keys(upperCaseKeys)[88];
           setCurrencyOptions([...Object.keys(upperCaseKeys)]);
-          setTopCurrSym(Object.keys(upperCaseKeys)[80]);
-          setBottomCurrSym(Object.keys(upperCaseKeys)[90]);
+          setTopCurrSym(Object.keys(upperCaseKeys)[79]);
+          setBottomCurrSym(Object.keys(upperCaseKeys)[88]);
           setExchangeRate(upperCaseKeys[firstCurrency]);
 
           //to set the full name of the currency converted
@@ -74,11 +71,11 @@ function App() {
           for (const [key, value] of Object.entries(fullname.data)) {
             upperCaseFullName[key.toUpperCase()] = value;
           }
-          setTopFullName(Object.values(upperCaseFullName)[80]);
-          setBottomFullName(Object.values(upperCaseFullName)[90]);
+          setTopFullName(Object.values(upperCaseFullName)[79]);
+          setBottomFullName(Object.values(upperCaseFullName)[88]);
         })
       )
-      .catch((err) => setErrMsg(err));
+      .catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {
@@ -115,7 +112,7 @@ function App() {
               );
             })
           )
-          .catch((err) => setErrMsg(err));
+          .catch((err) => console.log(err));
       } else if (
         typeof topCurrSym === "string" &&
         typeof bottomCurrSym === "object"
@@ -130,7 +127,7 @@ function App() {
               );
             })
           )
-          .catch((err) => setErrMsg(err));
+          .catch((err) => console.log(err));
       } else if (
         typeof topCurrSym === "object" &&
         typeof bottomCurrSym === "object"
@@ -148,7 +145,7 @@ function App() {
               );
             })
           )
-          .catch((err) => setErrMsg(err));
+          .catch((err) => console.log(err));
       }
     }
   }, [topCurrSym, bottomCurrSym]);
@@ -247,7 +244,6 @@ function App() {
       <p className="credits">
         <em>Data Source: https://github.com/fawazahmed0/currency-api</em>
       </p>
-      {errMsg && <div className="error"> {errMsg} </div>}
     </div>
   );
 }
