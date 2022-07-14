@@ -1,8 +1,10 @@
-# Rocket Academy Coding Bootcamp: Project 1: Frontend App
+# Rocket Academy Coding Bootcamp: Frontend App with React
 
-https://bc.rocketacademy.co/1-frontend/1.p-frontend-app
+Deployed Link: https://wolffsteinn.github.io/project1-bootcamp
 
 ## Project: Currency Converter App
+
+Learned React in April 2022 this project was completed in June 2022.
 
 ### Rationale for building this project
 
